@@ -1,0 +1,39 @@
+﻿@using NoFrixion_Assignment.Models;
+
+@{
+
+    var LData = (List<CryptoModel>)ViewBag.Message;
+
+
+    foreach (var Data in LData)
+    {
+        <h1>@Data.CryptoName</h1>
+        <div class="row">
+
+            @{
+                var count = 0;
+                Data.CryptoCurrencyandRate.Reverse();
+            }
+            @foreach (var item in Data.CryptoCurrencyandRate)
+            {
+                if (count++ % 3 == 0)
+                {
+                    <div class="col-sm-3 my-2">
+                        <h4>@item.LastUpdated.ToString()</h4>
+                    </div>
+                }
+                <div class="col-sm-3 my-2">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">@item.CurrencyName</h5>
+                            <h6 class="card-subtitle mb-2 text-muted"> @item.LastUpdated.ToString()</h6>
+                            <h3 class="text-success">
+                                @item.Rate
+                            </h3>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+}
